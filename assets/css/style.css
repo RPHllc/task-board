@@ -14,8 +14,3 @@ body {
 .task-card:hover {
   cursor: grab;
 }
-
-.modal-title,
-.modal-date {
-  /* display: flex; */
-}
