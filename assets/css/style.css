@@ -32,4 +32,13 @@ body {
 .title-section {
   padding: 2px;
   border-bottom: 1px solid #000000;
+  background-color: #f5f5f5;
+}
+
+.task.red .title-section {
+  background-color: #ffcdd2;
+}
+
+.task.yellow .title-section {
+  background-color: #fff9c4;
 }
