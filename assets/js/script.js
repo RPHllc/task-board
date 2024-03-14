@@ -20,7 +20,7 @@ function createTaskCard(task) {
   const dueDate = dayjs(task.dueDate);
   const today = dayjs().startOf("day");
   const dueDateFormatted = dueDate.isAfter(today)
-    ? dueDate.format("YYYY-MM-DD")
+    ? dueDate.format("MMM DD, YYYY")
     : dueDate.isBefore(today)
     ? "Past Due"
     : "Due Today";
@@ -33,7 +33,7 @@ function createTaskCard(task) {
   card.append(
     $("<h5>", { text: task.title }),
     $("<p>", { text: task.description }),
-    $("<p>", { text: `Due Date: ${dueDateFormatted}` }),
+    $("<p>", { text: `${dueDateFormatted}` }),
     $("<button>", { text: "Delete", click: handleDeleteTask })
   );
   card.css({
