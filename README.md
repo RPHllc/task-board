@@ -36,4 +36,8 @@ THEN the saved tasks persist
 
 ## Screenshot
 
+![Task List Screenshot](./assets/images/screenshot.png)
+
 ## Live
+
+https://vpontual.github.io/task-board/
