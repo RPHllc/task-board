@@ -54,7 +54,17 @@ function createTaskCard(task) {
 }
 
 // Todo: create a function to render the task list and make cards draggable
-function renderTaskList() {}
+function renderTaskList() {
+  $("#todo-cards, #in-progress-cards, #done-cards").empty(); // Clear existing tasks
+  taskList.forEach((task) => {
+    const taskCard = createTaskCard(task);
+    const laneId = task.status || "to-do"; // Use "to-do" as default status if not set
+    $(`.lane#${laneId} .card-body`).append(taskCard); // Append card to the appropriate lane
+  });
+  $(".card-body").each(function () {
+    $(this).css("text-align", "center"); // Center the cards within each section
+  });
+}
 
 // Todo: create a function to handle adding a new task
 function handleAddTask(event) {}
