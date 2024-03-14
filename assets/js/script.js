@@ -3,8 +3,14 @@ let taskList = JSON.parse(localStorage.getItem("tasks"));
 let nextId = JSON.parse(localStorage.getItem("nextId"));
 
 // Todo: create a function to generate a unique task id
-function generateTaskId() {}
-
+function generateTaskId() {
+  const uniqueId = `task-${Date.now()}-${Math.random()
+    .toString(36)
+    .substr(2, 9)}`;
+  localStorage.setItem("nextId", nextId + 1);
+  nextId++;
+  return uniqueId;
+}
 // Todo: create a function to create a task card
 function createTaskCard(task) {}
 
@@ -22,15 +28,8 @@ function handleDrop(event, ui) {}
 
 // Todo: when the page loads, render the task list, add event listeners, make lanes droppable, and make the due date field a date picker
 $(document).ready(function () {
-  // Event listener for modal form submission (ensure selector targets the form itself)
   $("#taskForm").submit(handleAddTask);
-
-  $(".lane").droppable({
-    accept: ".task",
-    drop: handleDrop,
-  });
-  $("#taskDueDate").datepicker({
-    dateFormat: "yy-mm-dd",
-  });
-  renderTaskList();
+  $(".lane").droppable({ accept: ".task", drop: handleDrop });
+  $("#taskDueDate").datepicker({ dateFormat: "yy-mm-dd" });
+  renderTaskList(); // Render initial list on page load
 });
