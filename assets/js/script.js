@@ -18,6 +18,8 @@ function generateTaskId() {
 function createTaskCard(task) {
   const card = $("<div>", { class: "task", id: task.id });
   const cardContent = $("<div>", { class: "card-content" });
+  const titleSection = $("<div>", { class: "title-content" });
+
   const dueDate = dayjs(task.dueDate);
   const today = dayjs().startOf("day");
   const dueDateFormatted = dueDate.isAfter(today)
@@ -25,16 +27,19 @@ function createTaskCard(task) {
     : dueDate.isBefore(today)
     ? "Past Due"
     : "Due Today";
+
   const cardBg = dueDate.isBefore(today)
     ? "red"
     : dueDate.isSame(today)
     ? "yellow"
     : "white";
 
+  titleSection.append($("<h5>", { text: task.title }));
+
   cardContent.append(
-    $("<h5>", { text: task.title }),
+    titleSection,
     $("<p>", { text: task.description }),
-    $("<p>", { text: `Due Date: ${dueDateFormatted}` }),
+    $("<p>", { text: `${dueDateFormatted}` }),
     $("<button>", { text: "Delete", click: handleDeleteTask })
   );
 
