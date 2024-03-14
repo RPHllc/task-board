@@ -1,4 +1,4 @@
-# hird-Party APIs: Task Board
+# Third-Party APIs: Task Board
 
 ## Task
 
