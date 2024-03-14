@@ -17,6 +17,7 @@ function generateTaskId() {
 // Todo: create a function to create a task card
 function createTaskCard(task) {
   const card = $("<div>", { class: "task", id: task.id });
+  const cardContent = $("<div>", { class: "card-content" });
   const dueDate = dayjs(task.dueDate);
   const today = dayjs().startOf("day");
   const dueDateFormatted = dueDate.isAfter(today)
@@ -30,12 +31,15 @@ function createTaskCard(task) {
     ? "yellow"
     : "white";
 
-  card.append(
+  cardContent.append(
     $("<h5>", { text: task.title }),
     $("<p>", { text: task.description }),
-    $("<p>", { text: `${dueDateFormatted}` }),
+    $("<p>", { text: `Due Date: ${dueDateFormatted}` }),
     $("<button>", { text: "Delete", click: handleDeleteTask })
   );
+
+  card.append(cardContent);
+
   card.css({
     background: cardBg,
     border: "1px solid #ccc",
