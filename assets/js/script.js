@@ -90,7 +90,13 @@ function handleAddTask(event) {
 }
 
 // Todo: create a function to handle deleting a task
-function handleDeleteTask(event) {}
+function handleDeleteTask(event) {
+  const taskId = $(this).closest(".task").attr("id");
+  taskList = taskList.filter((task) => task.id !== taskId);
+  localStorage.setItem("tasks", JSON.stringify(taskList));
+  renderTaskList();
+  $(this).closest(".task").remove(); // Remove the card from the UI
+}
 
 // Todo: create a function to handle dropping a task into a new status lane
 function handleDrop(event, ui) {}
