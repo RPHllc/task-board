@@ -12,7 +12,46 @@ function generateTaskId() {
   return uniqueId;
 }
 // Todo: create a function to create a task card
-function createTaskCard(task) {}
+function createTaskCard(task) {
+  const card = $("<div>", { class: "task", id: task.id });
+  const dueDate = dayjs(task.dueDate);
+  const today = dayjs().startOf("day");
+  const dueDateFormatted = dueDate.isAfter(today)
+    ? dueDate.format("YYYY-MM-DD")
+    : dueDate.isBefore(today)
+    ? "Past Due"
+    : "Due Today";
+  const cardBg = dueDate.isBefore(today)
+    ? "red"
+    : dueDate.isSame(today)
+    ? "yellow"
+    : "white";
+
+  card.append(
+    $("<h5>", { text: task.title }),
+    $("<p>", { text: task.description }),
+    $("<p>", { text: `Due Date: ${dueDateFormatted}` }),
+    $("<button>", { text: "Delete", click: handleDeleteTask })
+  );
+  card.css({
+    background: cardBg,
+    border: "1px solid #ccc",
+    borderRadius: "5px",
+    boxShadow: "0 2px 4px rgba(0, 0, 0, 0.1)",
+    padding: "10px",
+    marginBottom: "10px",
+    width: "300px",
+    display: "inline-block",
+    textAlign: "left",
+    position: "relative",
+    zIndex: 1000,
+  });
+  card.draggable({
+    appendTo: "body",
+    revert: "invalid",
+  });
+  return card;
+}
 
 // Todo: create a function to render the task list and make cards draggable
 function renderTaskList() {}
